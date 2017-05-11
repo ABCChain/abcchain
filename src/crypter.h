@@ -34,7 +34,6 @@ public:
     std::vector<unsigned char> vchCryptedKey;
     std::vector<unsigned char> vchSalt;
     // 0 = EVP_sha512()
-    // 1 = scrypt()
     unsigned int nDerivationMethod;
     unsigned int nDeriveIterations;
     // Use this for more parameters to key derivation,
@@ -66,12 +65,6 @@ public:
             default:
                 nDeriveIterations = 25000;
                 nDerivationMethod = 0;
-                vchOtherDerivationParameters = std::vector<unsigned char>(0);
-            break;
-
-            case 1: // scrypt+sha512
-                nDeriveIterations = 10000;
-                nDerivationMethod = 1;
                 vchOtherDerivationParameters = std::vector<unsigned char>(0);
             break;
         }

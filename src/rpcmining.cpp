@@ -43,10 +43,14 @@ Value getsubsidy(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
         throw runtime_error(
-            "getsubsidy [nTarget]\n"
+            "getsubsidy [nHeight]\n"
             "Returns proof-of-work subsidy value for the specified value of target.");
 
-    return (uint64_t)GetProofOfWorkReward(0);
+    int nHeight = nBestHeight;
+    if (params.size() > 0)
+        nHeight = params[0].get_int();
+
+    return (uint64_t)GetProofOfWorkReward(0, nHeight);
 }
 
 Value getstakesubsidy(const Array& params, bool fHelp)
@@ -73,7 +77,7 @@ Value getstakesubsidy(const Array& params, bool fHelp)
     if (!tx.GetCoinAge(txdb, pindexBest, nCoinAge))
         throw JSONRPCError(RPC_MISC_ERROR, "GetCoinAge failed");
 
-    return (uint64_t)GetProofOfStakeReward(pindexBest, nCoinAge, 0);
+    return (uint64_t)GetProofOfStakeReward(pindexBest, 0);
 }
 
 Value getmininginfo(const Array& params, bool fHelp)
@@ -97,7 +101,7 @@ Value getmininginfo(const Array& params, bool fHelp)
     diff.push_back(Pair("search-interval",      (int)nLastCoinStakeSearchInterval));
     obj.push_back(Pair("difficulty",    diff));
 
-    obj.push_back(Pair("blockvalue",    (uint64_t)GetProofOfWorkReward(0)));
+    obj.push_back(Pair("blockvalue",    (uint64_t)GetProofOfWorkReward(0, nBestHeight + 1)));
     obj.push_back(Pair("netmhashps",     GetPoWMHashPS()));
     obj.push_back(Pair("netstakeweight", GetPoSKernelPS()));
     obj.push_back(Pair("errors",        GetWarnings("statusbar")));
@@ -105,10 +109,10 @@ Value getmininginfo(const Array& params, bool fHelp)
 
     weight.push_back(Pair("minimum",    (uint64_t)nWeight));
     weight.push_back(Pair("maximum",    (uint64_t)0));
-    weight.push_back(Pair("combined",  (uint64_t)nWeight));
+    weight.push_back(Pair("combined",   (uint64_t)nWeight));
     obj.push_back(Pair("stakeweight", weight));
 
-    obj.push_back(Pair("stakeinterest",    (uint64_t)COIN_YEAR_REWARD));
+    obj.push_back(Pair("stakeinterest", (uint64_t)COIN_YEAR_REWARD));
     obj.push_back(Pair("testnet",       TestNet()));
     return obj;
 }
@@ -163,10 +167,10 @@ Value checkkernel(const Array& params, bool fHelp)
     bool fCreateBlockTemplate = params.size() > 1 ? params[1].get_bool() : false;
 
     if (vNodes.empty())
-        throw JSONRPCError(-9, "BlackCoin is not connected!");
+        throw JSONRPCError(-9, "ABCChain is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "BlackCoin is downloading blocks...");
+        throw JSONRPCError(-10, "ABCChain is downloading blocks...");
 
     COutPoint kernel;
     CBlockIndex* pindexPrev = pindexBest;
@@ -243,11 +247,13 @@ Value getworkex(const Array& params, bool fHelp)
             "If [data, coinbase] is not specified, returns extended work data.\n"
         );
 
+    LogPrintf("getworkex'n");
+
     if (vNodes.empty())
-        throw JSONRPCError(-9, "BlackCoin is not connected!");
+        throw JSONRPCError(-9, "ABCChain is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "BlackCoin is downloading blocks...");
+        throw JSONRPCError(-10, "ABCChain is downloading blocks...");
 
     if (pindexBest->nHeight >= Params().LastPOWBlock())
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
@@ -305,6 +311,10 @@ Value getworkex(const Array& params, bool fHelp)
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
 
         CTransaction coinbaseTx = pblock->vtx[0];
+
+        // Update nTime
+        coinbaseTx.nTime = pblock->nTime;
+
         std::vector<uint256> merkle = pblock->GetMerkleBranch(0);
 
         Object result;
@@ -378,10 +388,10 @@ Value getwork(const Array& params, bool fHelp)
             "If [data] is specified, tries to solve the block and returns true if it was successful.");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BlackCoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "ABCChain is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BlackCoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "ABCChain is downloading blocks...");
 
     if (pindexBest->nHeight >= Params().LastPOWBlock())
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
@@ -445,6 +455,11 @@ Value getwork(const Array& params, bool fHelp)
         FormatHashBuffers(pblock, pmidstate, pdata, phash1);
 
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+
+        CTransaction coinbaseTx = pblock->vtx[0];
+
+        // Update nTime
+        coinbaseTx.nTime = pblock->nTime;
 
         Object result;
         result.push_back(Pair("midstate", HexStr(BEGIN(pmidstate), END(pmidstate)))); // deprecated
@@ -522,10 +537,10 @@ Value getblocktemplate(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "BlackCoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "ABCChain is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "BlackCoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "ABCChain is downloading blocks...");
 
     if (pindexBest->nHeight >= Params().LastPOWBlock())
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");

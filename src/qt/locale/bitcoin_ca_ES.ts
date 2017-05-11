@@ -3,22 +3,24 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About BlackCoin</source>
-        <translation>Sobre BlackCoin</translation>
+        <source>About ABCChain</source>
+        <translation>Sobre ABCChain</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;BlackCoin&lt;/b&gt; version</source>
-        <translation>versió &lt;b&gt;BlackCoin&lt;/b&gt;</translation>
+        <source>&lt;b&gt;ABCChain&lt;/b&gt; version</source>
+        <translation>versió &lt;b&gt;ABCChain&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The BlackCoin developers</source>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2017 The ABCChain developers</source>
         <translation>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The BlackCoin developers</translation>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2017 The ABCChain developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -60,8 +62,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-43"/>
-        <source>These are your BlackCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Aquestes són les teves adreces de BlackCoin per rebre els pagaments. És possible que vulgueu donar una diferent a cada remitent per a poder realitzar un seguiment de qui li está pagant.</translation>
+        <source>These are your ABCChain addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Aquestes són les teves adreces de ABCChain per rebre els pagaments. És possible que vulgueu donar una diferent a cada remitent per a poder realitzar un seguiment de qui li está pagant.</translation>
     </message>
     <message>
         <location line="+53"/>
@@ -75,8 +77,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign a message to prove you own a BlackCoin address</source>
-        <translation>Signar un missatge per demostrar que és propietari d&apos;una adreça BlackCoin</translation>
+        <source>Sign a message to prove you own a ABCChain address</source>
+        <translation>Signar un missatge per demostrar que és propietari d&apos;una adreça ABCChain</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -90,8 +92,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-10"/>
-        <source>Verify a message to ensure it was signed with a specified BlackCoin address</source>
-        <translation>Comproveu el missatge per assegurar-se que es va signar amb una adreça BlackCoin especificada.</translation>
+        <source>Verify a message to ensure it was signed with a specified ABCChain address</source>
+        <translation>Comproveu el missatge per assegurar-se que es va signar amb una adreça ABCChain especificada.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -258,8 +260,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+82"/>
-        <source>BlackCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>BlackCoin tancarà ara per acabar el procés de xifrat. Recordeu que l&apos;encriptació del seu moneder no pot protegir completament les seves monedes de ser robades pel malware que pugui infectar al seu equip.</translation>
+        <source>ABCChain will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>ABCChain tancarà ara per acabar el procés de xifrat. Recordeu que l&apos;encriptació del seu moneder no pot protegir completament les seves monedes de ser robades pel malware que pugui infectar al seu equip.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -352,8 +354,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about BlackCoin</source>
-        <translation>Mostra informació sobre BlackCoin</translation>
+        <source>Show information about ABCChain</source>
+        <translation>Mostra informació sobre ABCChain</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -392,13 +394,13 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-55"/>
-        <source>Send coins to a BlackCoin address</source>
-        <translation>Enviar monedes a una adreça BlackCoin</translation>
+        <source>Send coins to a ABCChain address</source>
+        <translation>Enviar monedes a una adreça ABCChain</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>Modify configuration options for BlackCoin</source>
-        <translation>Modificar les opcions de configuració per a BlackCoin</translation>
+        <source>Modify configuration options for ABCChain</source>
+        <translation>Modificar les opcions de configuració per a ABCChain</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -438,8 +440,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-214"/>
         <location line="+555"/>
-        <source>BlackCoin</source>
-        <translation>BlackCoin</translation>
+        <source>ABCChain</source>
+        <translation>ABCChain</translation>
     </message>
     <message>
         <location line="-555"/>
@@ -448,8 +450,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+193"/>
-        <source>&amp;About BlackCoin</source>
-        <translation>&amp;Sobre BlackCoin</translation>
+        <source>&amp;About ABCChain</source>
+        <translation>&amp;Sobre ABCChain</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -500,13 +502,13 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+0"/>
         <location line="+58"/>
-        <source>BlackCoin client</source>
-        <translation>Client BlackCoin</translation>
+        <source>ABCChain client</source>
+        <translation>Client ABCChain</translation>
     </message>
     <message numerus="yes">
         <location line="+70"/>
-        <source>%n active connection(s) to BlackCoin network</source>
-        <translation><numerusform>%n conexió activa a la xarxa BlackCoin</numerusform><numerusform>%n conexions actives a la xarxa BlackCoin</numerusform></translation>
+        <source>%n active connection(s) to ABCChain network</source>
+        <translation><numerusform>%n conexió activa a la xarxa ABCChain</numerusform><numerusform>%n conexions actives a la xarxa ABCChain</numerusform></translation>
     </message>
     <message>
         <location line="+488"/>
@@ -596,8 +598,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid BlackCoin address or malformed URI parameters.</source>
-        <translation>l&apos;URI no es pot analitzar! Això pot ser causat per una adreça BlackCoin no vàlida o paràmetres URI malformats.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid ABCChain address or malformed URI parameters.</source>
+        <translation>l&apos;URI no es pot analitzar! Això pot ser causat per una adreça ABCChain no vàlida o paràmetres URI malformats.</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -719,8 +721,8 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+104"/>
-        <source>A fatal error occurred. BlackCoin can no longer continue safely and will quit.</source>
-        <translation>S&apos;ha produït un error fatal. BlackCoin ja no pot continuar de forma segura i es tancarà.</translation>
+        <source>A fatal error occurred. ABCChain can no longer continue safely and will quit.</source>
+        <translation>S&apos;ha produït un error fatal. ABCChain ja no pot continuar de forma segura i es tancarà.</translation>
     </message>
 </context>
 <context>
@@ -995,8 +997,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid BlackCoin address.</source>
-        <translation>La direcció introduïda &quot;%1&quot; no és una adreça BlackCoin vàlida.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid ABCChain address.</source>
+        <translation>La direcció introduïda &quot;%1&quot; no és una adreça ABCChain vàlida.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1014,8 +1016,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location filename="../guiutil.cpp" line="+426"/>
         <location line="+12"/>
-        <source>BlackCoin-Qt</source>
-        <translation>BlackCoin-Qt</translation>
+        <source>ABCChain-Qt</source>
+        <translation>ABCChain-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1087,13 +1089,13 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start BlackCoin after logging in to the system.</source>
-        <translation>Inicia automàticament BlackCoin després d&apos;entrar en el sistema.</translation>
+        <source>Automatically start ABCChain after logging in to the system.</source>
+        <translation>Inicia automàticament ABCChain després d&apos;entrar en el sistema.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start BlackCoin on system login</source>
-        <translation>&amp;Iniciar BlackCoin amb l&apos;inici de sessió</translation>
+        <source>&amp;Start ABCChain on system login</source>
+        <translation>&amp;Iniciar ABCChain amb l&apos;inici de sessió</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -1102,8 +1104,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the BlackCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Obrir automàticament el port de client BlackCoin en el router. Això només funciona quan el router és compatible amb UPnP i està habilitat.</translation>
+        <source>Automatically open the ABCChain client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Obrir automàticament el port de client ABCChain en el router. Això només funciona quan el router és compatible amb UPnP i està habilitat.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1132,7 +1134,7 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="-57"/>
-        <source>Connect to the BlackCoin network through a SOCKS5 proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the ABCChain network through a SOCKS5 proxy (e.g. when connecting through Tor).</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1177,8 +1179,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting BlackCoin.</source>
-        <translation>L&apos;idioma de la interfície d&apos;usuari es pot configurar aquí. Aquesta configuració s&apos;aplicarà després de reiniciar BlackCoin.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting ABCChain.</source>
+        <translation>L&apos;idioma de la interfície d&apos;usuari es pot configurar aquí. Aquesta configuració s&apos;aplicarà després de reiniciar ABCChain.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1234,8 +1236,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting BlackCoin.</source>
-        <translation>Aquesta configuració s&apos;aplicarà després de reiniciar BlackCoin.</translation>
+        <source>This setting will take effect after restarting ABCChain.</source>
+        <translation>Aquesta configuració s&apos;aplicarà després de reiniciar ABCChain.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1253,8 +1255,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location line="+46"/>
         <location line="+247"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the BlackCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>La informació mostrada pot estar fora de data. El seu moneder es sincronitza automàticament amb la xarxa BlackCoin després d&apos;establir una connexió, però aquest procés no s&apos;ha completat encara.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ABCChain network after a connection is established, but this process has not completed yet.</source>
+        <translation>La informació mostrada pot estar fora de data. El seu moneder es sincronitza automàticament amb la xarxa ABCChain després d&apos;establir una connexió, però aquest procés no s&apos;ha completat encara.</translation>
     </message>
     <message>
         <location line="-173"/>
@@ -1327,7 +1329,7 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <name>PaymentServer</name>
     <message>
         <location filename="../paymentserver.cpp" line="+107"/>
-        <source>Cannot start blackcoin: click-to-pay handler</source>
+        <source>Cannot start abcoin: click-to-pay handler</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1497,8 +1499,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the BlackCoin-Qt help message to get a list with possible BlackCoin command-line options.</source>
-        <translation>Mostra el missatge d&apos;ajuda de BlackCoin-Qt per obtenir una llista amb les possibles opcions de línia d&apos;ordres BlackCoin.</translation>
+        <source>Show the ABCChain-Qt help message to get a list with possible ABCChain command-line options.</source>
+        <translation>Mostra el missatge d&apos;ajuda de ABCChain-Qt per obtenir una llista amb les possibles opcions de línia d&apos;ordres ABCChain.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1517,13 +1519,13 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="-104"/>
-        <source>BlackCoin - Debug window</source>
-        <translation>BlackCoin - Finestra Depuració</translation>
+        <source>ABCChain - Debug window</source>
+        <translation>ABCChain - Finestra Depuració</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>BlackCoin Core</source>
-        <translation>Nucli BlackCoin</translation>
+        <source>ABCChain Core</source>
+        <translation>Nucli ABCChain</translation>
     </message>
     <message>
         <location line="+256"/>
@@ -1532,8 +1534,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the BlackCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Obriu el fitxer de registre de depuració BlackCoin des del directori de dades actual. Això pot trigar uns segons en els arxius de registre de grans dimensions.</translation>
+        <source>Open the ABCChain debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Obriu el fitxer de registre de depuració ABCChain des del directori de dades actual. Això pot trigar uns segons en els arxius de registre de grans dimensions.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1542,8 +1544,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-28"/>
-        <source>Welcome to the BlackCoin RPC console.</source>
-        <translation>Benvingut a la consola RPC de BlackCoin.</translation>
+        <source>Welcome to the ABCChain RPC console.</source>
+        <translation>Benvingut a la consola RPC de ABCChain.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1713,8 +1715,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-171"/>
-        <source>Enter a BlackCoin address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
-        <translation>Introdueix una adreça BlackCoin (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
+        <source>Enter a ABCChain address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
+        <translation>Introdueix una adreça ABCChain (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1808,8 +1810,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+241"/>
-        <source>WARNING: Invalid BlackCoin address</source>
-        <translation>ADVERTÈNCIA: Direcció BlackCoin invàlida</translation>
+        <source>WARNING: Invalid ABCChain address</source>
+        <translation>ADVERTÈNCIA: Direcció ABCChain invàlida</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1882,8 +1884,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a BlackCoin address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
-        <translation>Introdueix una adreça BlackCoin (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
+        <source>Enter a ABCChain address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
+        <translation>Introdueix una adreça ABCChain (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
     </message>
 </context>
 <context>
@@ -1943,8 +1945,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this BlackCoin address</source>
-        <translation>Signar un missatge per demostrar que és propietari d&apos;aquesta adreça BlackCoin</translation>
+        <source>Sign the message to prove you own this ABCChain address</source>
+        <translation>Signar un missatge per demostrar que és propietari d&apos;aquesta adreça ABCChain</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1975,8 +1977,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified BlackCoin address</source>
-        <translation>Comproveu el missatge per assegurar-se que es va signar amb l&apos;adreça BlackCoin especificada.</translation>
+        <source>Verify the message to ensure it was signed with the specified ABCChain address</source>
+        <translation>Comproveu el missatge per assegurar-se que es va signar amb l&apos;adreça ABCChain especificada.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1986,8 +1988,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a BlackCoin address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
-        <translation>Introdueix una adreça BlackCoin (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
+        <source>Enter a ABCChain address (e.g. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</source>
+        <translation>Introdueix una adreça ABCChain (p.ex. B8gZqgY4r2RoEdqYk3QsAqFckyf9pRHN6i)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -1996,8 +1998,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter BlackCoin signature</source>
-        <translation>Introduïu la signatura BlackCoin</translation>
+        <source>Enter ABCChain signature</source>
+        <translation>Introduïu la signatura ABCChain</translation>
     </message>
     <message>
         <location line="+85"/>
@@ -2575,8 +2577,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+8"/>
-        <source>BlackCoin version</source>
-        <translation>versió BlackCoin</translation>
+        <source>ABCChain version</source>
+        <translation>versió ABCChain</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2585,8 +2587,8 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or blackcoind</source>
-        <translation>Enviar comandes a -server o blackcoind</translation>
+        <source>Send command to -server or abcoind</source>
+        <translation>Enviar comandes a -server o abcoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2605,13 +2607,13 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: blackcoin.conf)</source>
-        <translation>Especifiqueu el fitxer de configuració (per defecte: blackcoin.conf)</translation>
+        <source>Specify configuration file (default: abcoin.conf)</source>
+        <translation>Especifiqueu el fitxer de configuració (per defecte: abcoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: blackcoind.pid)</source>
-        <translation>Especificar arxiu pid (per defecte: blackcoind.pid)</translation>
+        <source>Specify pid file (default: abcoind.pid)</source>
+        <translation>Especificar arxiu pid (per defecte: abcoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2628,13 +2630,13 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
         <source>%s, you must set a rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=blackcoinrpc
+rpcuser=abcoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;BlackCoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;ABCChain Alert&quot; admin@foo.com
 </source>
         <translation type="unfinished"/>
     </message>
@@ -2735,8 +2737,8 @@ for example: alertnotify=echo %%s | mail -s &quot;BlackCoin Alert&quot; admin@fo
     </message>
     <message>
         <location line="+46"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong BlackCoin will not work properly.</source>
-        <translation>Avís: Comproveu que la data i hora de l&apos;equip siguin correctes! Si el seu rellotge és erroni BlackCoin no funcionarà correctament.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong ABCChain will not work properly.</source>
+        <translation>Avís: Comproveu que la data i hora de l&apos;equip siguin correctes! Si el seu rellotge és erroni ABCChain no funcionarà correctament.</translation>
     </message>
     <message>
         <location line="-19"/>
@@ -3031,7 +3033,7 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     </message>
     <message>
         <location line="+8"/>
-        <source>Initialization sanity check failed. BlackCoin is shutting down.</source>
+        <source>Initialization sanity check failed. ABCChain is shutting down.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3086,13 +3088,13 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of BlackCoin</source>
-        <translation>Error en carregar wallet.dat: El moneder requereix la versió més recent de BlackCoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of ABCChain</source>
+        <translation>Error en carregar wallet.dat: El moneder requereix la versió més recent de ABCChain</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart BlackCoin to complete</source>
-        <translation>El moneder necessita ser reescrita: reiniciar BlackCoin per completar</translation>
+        <source>Wallet needed to be rewritten: restart ABCChain to complete</source>
+        <translation>El moneder necessita ser reescrita: reiniciar ABCChain per completar</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3151,8 +3153,8 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     </message>
     <message>
         <location line="+131"/>
-        <source>Unable to bind to %s on this computer. BlackCoin is probably already running.</source>
-        <translation>No es pot enllaçar a %s en aquest equip. BlackCoin probablement ja estigui en funcionament.</translation>
+        <source>Unable to bind to %s on this computer. ABCChain is probably already running.</source>
+        <translation>No es pot enllaçar a %s en aquest equip. ABCChain probablement ja estigui en funcionament.</translation>
     </message>
     <message>
         <location line="-108"/>
@@ -3181,7 +3183,7 @@ Executar una ordre quan es rep un avís rellevant (%s en cmd es substitueix per 
     </message>
     <message>
         <location line="+3"/>
-        <source>Cannot obtain a lock on data directory %s. BlackCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. ABCChain is probably already running.</source>
         <translation type="unfinished"/>
     </message>
     <message>

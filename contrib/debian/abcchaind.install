@@ -1,0 +1,2 @@
+debian/bin/abcchaind usr/bin
+src/abcchaind usr/lib/abcchain

@@ -42,61 +42,90 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
     }
 }
 
+// Convert the pnSeeds array into usable address objects.
+static void convertSeeds(std::vector<CAddress> &vSeedsOut, const unsigned int *data, unsigned int count, int port)
+{
+    // It'll only connect to one or two seed nodes because once it connects,
+    // it'll get a pile of addresses with newer timestamps.
+    // Seed nodes are given a random 'last seen time' of between one and two
+    // weeks ago.
+    const int64_t nOneWeek = 7*24*60*60;
+    for (unsigned int k = 0; k < count; ++k)
+    {
+        struct in_addr ip;
+        unsigned int i = data[k], t;
+
+        // -- convert to big endian
+        t =   (i & 0x000000ff) << 24u
+            | (i & 0x0000ff00) << 8u
+            | (i & 0x00ff0000) >> 8u
+            | (i & 0xff000000) >> 24u;
+
+        memcpy(&ip, &t, sizeof(ip));
+
+        CAddress addr(CService(ip, port));
+        addr.nTime = GetTime()-GetRand(nOneWeek)-nOneWeek;
+        vSeedsOut.push_back(addr);
+    }
+}
+
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0x70;
-        pchMessageStart[1] = 0x35;
-        pchMessageStart[2] = 0x22;
-        pchMessageStart[3] = 0x05;
-        vAlertPubKey = ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
-        nDefaultPort = 15714;
-        nRPCPort = 15715;
+        pchMessageStart[0] = 0xdf;
+        pchMessageStart[1] = 0xfa;
+        pchMessageStart[2] = 0xb4;
+        pchMessageStart[3] = 0xbc;
+
+        vAlertPubKey = ParseHex("0442ed3ec31658c335a0a4a2aa3b5a772b5850fcc001927770b8602350b239fadaa51d9c6bd4ee0faafd1339674a9de74e86a7d34671a674420da3bb3d36e87f2c"); // TODO
+        nDefaultPort = 44233;
+        nRPCPort = 44234;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
 
         // Build the genesis block. Note that the output of the genesis coinbase cannot
         // be spent as it did not originally exist in the database.
         //
-        //CBlock(hash=000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90, nTime=1393221600, nBits=1e0fffff, nNonce=164482, vtx=1, vchBlockSig=)
-        //  Coinbase(hash=12630d16a9, nTime=1393221600, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
+        //CBlock(hash=00000fdfdd5cea5d20f14964161f31428d67be272a05723b559bee3a9e5ddab9, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=bf8652572e702e74747fa8e11833c70f321428261739f20b1f6889f200b5ca4e, nTime=1494511200, nBits=1e0fffff, nNonce=686805, vtx=1, vchBlockSig=)
+        //  Coinbase(hash=bf8652572e702e74747fa8e11833c70f321428261739f20b1f6889f200b5ca4e, nTime=1494511200, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a4c51526575746572732031312f30352f3230313720546f70204672656e63682062616e6b2063686965662061747461636b73206e6f2d6672696c6c7320726976616c7320666f7220667265656c6f6164696e67)
         //    CTxOut(empty)
-        //  vMerkleTree: 12630d16a9
-        const char* pszTimestamp = "20 Feb 2014 Bitcoin ATMs come to USA";
+        //  vMerkleTree:  bf8652572e702e74747fa8e11833c70f321428261739f20b1f6889f200b5ca4e
+
+        const char* pszTimestamp = "Reuters 11/05/2017 Top French bank chief attacks no-frills rivals for freeloading";
         std::vector<CTxIn> vin;
         vin.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         std::vector<CTxOut> vout;
         vout.resize(1);
         vout[0].SetEmpty();
-        CTransaction txNew(1, 1393221600, vin, vout, 0);
+        CTransaction txNew(1, 1494511200, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1393221600;
+        genesis.nTime    = 1494511200;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 164482;
-
+        genesis.nNonce   = 686805;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
-        assert(genesis.hashMerkleRoot == uint256("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
 
-        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
-        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
+        assert(hashGenesisBlock == uint256("0x00000fdfdd5cea5d20f14964161f31428d67be272a05723b559bee3a9e5ddab9"));
+        assert(genesis.hashMerkleRoot == uint256("0xbf8652572e702e74747fa8e11833c70f321428261739f20b1f6889f200b5ca4e"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 85);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1, 153);
+        vSeeds.push_back(CDNSSeedData("95.85.29.65", "95.85.29.65"));
+        convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 24);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 4);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1, 152);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-        convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        nLastPOWBlock = 10000;
+        nLastPOWBlock = 64800;
+        nLastFairLaunchBlock = 1000; // 1000
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }
@@ -122,21 +151,22 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0xcd;
-        pchMessageStart[1] = 0xf2;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xef;
+        pchMessageStart[0] = 0xc3;
+        pchMessageStart[1] = 0xd2;
+        pchMessageStart[2] = 0xd1;
+        pchMessageStart[3] = 0xbd;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
-        vAlertPubKey = ParseHex("0471dc165db490094d35cde15b1f5d755fa6ad6f2b5ed0f340e3f17f57389c3c2af113a8cbcc885bde73305a553b5640c83021128008ddf882e856336269080496");
-        nDefaultPort = 25714;
-        nRPCPort = 25715;
+        vAlertPubKey = ParseHex("0442ed3ec31658c335a0a4a2aa3b5a772b5850fcc001927770b8602350b239fadaa51d9c6bd4ee0faafd1339674a9de74e86a7d34671a674420da3bb3d36e87f2c");
+        nDefaultPort = 55714;
+        nRPCPort = 55715;
         strDataDir = "testnet";
 
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 216178;
+        genesis.nNonce = 19818;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000724595fb3b9609d441cbfb9577615c292abf07d996d3edabc48de843642d"));
+
+        assert(hashGenesisBlock == uint256("0x0000050290d814d157344f07dad78df6b1115d3aae00006504865fc4ac42bd8b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -147,7 +177,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
-        convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
+        convertSeeds(vFixedSeeds, pnTestnetSeed, ARRAYLEN(pnTestnetSeed), nDefaultPort);
 
         nLastPOWBlock = 0x7fffffff;
     }
@@ -162,18 +192,19 @@ static CTestNetParams testNetParams;
 class CRegTestParams : public CTestNetParams {
 public:
     CRegTestParams() {
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0xbf;
-        pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
+        pchMessageStart[0] = 0xc5;
+        pchMessageStart[1] = 0xd4;
+        pchMessageStart[2] = 0xd3;
+        pchMessageStart[3] = 0xbf;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
         genesis.nTime = 1411111111;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 2;
+        genesis.nNonce = 3;
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
         strDataDir = "regtest";
-        assert(hashGenesisBlock == uint256("0x523dda6d336047722cbaf1c5dce622298af791bac21b33bf6e2d5048b2a13e3d"));
+
+        assert(hashGenesisBlock == uint256("0x2f55d4e6e463438196f3ccdb3bd594bb43a660de0642e14cd425da3414d94dd1"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }

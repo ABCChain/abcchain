@@ -1,0 +1,11 @@
+[Protocol]
+exec=abcchain-qt '%u'
+protocol=abcchain
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

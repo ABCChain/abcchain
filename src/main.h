@@ -11,7 +11,6 @@
 #include "txmempool.h"
 #include "net.h"
 #include "script.h"
-#include "scrypt.h"
 
 #include <limits>
 #include <list>
@@ -53,16 +52,8 @@ inline bool MoneyRange(int64_t nValue) { return (nValue >= 0 && nValue <= MAX_MO
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
 
 static const int64_t COIN_YEAR_REWARD = 1 * CENT; // 1% per year
-
-inline bool IsProtocolV1RetargetingFixed(int nHeight) { return TestNet() || nHeight > 38423; }
-inline bool IsProtocolV2(int nHeight) { return TestNet() || nHeight > 319000; }
-inline bool IsProtocolV3(int64_t nTime) { return TestNet() || nTime > 1444028400; }
-
-inline int64_t FutureDriftV1(int64_t nTime) { return nTime + 10 * 60; }
-inline int64_t FutureDriftV2(int64_t nTime) { return nTime + 15; }
-inline int64_t FutureDrift(int64_t nTime, int nHeight) { return IsProtocolV2(nHeight) ? FutureDriftV2(nTime) : FutureDriftV1(nTime); }
-
-inline unsigned int GetTargetSpacing(int nHeight) { return IsProtocolV2(nHeight) ? 64 : 60; }
+inline unsigned int GetTargetSpacing(int nHeight) { return 120; }
+inline int64_t FutureDrift(int64_t nTime, bool fPoW=false) { return (fPoW ? nTime + 10 * GetTargetSpacing(0) : nTime + 15); }
 
 extern CScript COINBASE_FLAGS;
 extern CCriticalSection cs_main;
@@ -133,8 +124,8 @@ void ThreadImport(std::vector<boost::filesystem::path> vImportFiles);
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
-int64_t GetProofOfWorkReward(int64_t nFees);
-int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, int64_t nFees);
+int64_t GetProofOfWorkReward(int64_t nFees, int nHeight);
+int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nFees);
 bool IsInitialBlockDownload();
 bool IsConfirmedInNPrevBlocks(const CTxIndex& txindex, const CBlockIndex* pindexFrom, int nMaxDepth, int& nActualDepth);
 std::string GetWarnings(std::string strFor);
@@ -580,7 +571,7 @@ class CBlock
 {
 public:
     // header
-    static const int CURRENT_VERSION = 7;
+    static const int CURRENT_VERSION = 2;
     int nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
@@ -650,7 +641,7 @@ public:
 
     uint256 GetHash() const
     {
-        if (nVersion > 6)
+        if (nVersion > 1)
             return Hash(BEGIN(nVersion), END(nNonce));
         else
             return GetPoWHash();
@@ -658,7 +649,7 @@ public:
 
     uint256 GetPoWHash() const
     {
-        return scrypt_blockhash(CVOIDBEGIN(nVersion));
+        return HashX11(BEGIN(nVersion), END(nNonce));;//  scrypt_blockhash(CVOIDBEGIN(nVersion));
     }
 
     int64_t GetBlockTime() const
@@ -871,15 +862,14 @@ public:
     int64_t nMoneySupply;
 
     unsigned int nFlags;  // ppcoin: block index flags
-    enum  
+    enum
     {
         BLOCK_PROOF_OF_STAKE = (1 << 0), // is proof-of-stake block
         BLOCK_STAKE_ENTROPY  = (1 << 1), // entropy bit for stake modifier
         BLOCK_STAKE_MODIFIER = (1 << 2), // regenerated stake modifier
     };
 
-    uint64_t nStakeModifier; // hash modifier for proof-of-stake
-    uint256 bnStakeModifierV2;
+    uint256 bnStakeModifier;
 
     // proof-of-stake specific fields
     COutPoint prevoutStake;
@@ -906,8 +896,7 @@ public:
         nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
-        nStakeModifier = 0;
-        bnStakeModifierV2 = 0;
+        bnStakeModifier = 0;
         hashProof = 0;
         prevoutStake.SetNull();
         nStakeTime = 0;
@@ -931,8 +920,7 @@ public:
         nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
-        nStakeModifier = 0;
-        bnStakeModifierV2 = 0;
+        bnStakeModifier = 0;
         hashProof = 0;
         if (block.IsProofOfStake())
         {
@@ -990,10 +978,7 @@ public:
 
     int64_t GetPastTimeLimit() const
     {
-        if (IsProtocolV2(nHeight))
-            return GetBlockTime();
-        else
-            return GetMedianTimePast();
+        return GetBlockTime();
     }
 
     enum { nMedianTimeSpan=11 };
@@ -1053,20 +1038,13 @@ public:
         return (nFlags & BLOCK_STAKE_MODIFIER);
     }
 
-    void SetStakeModifier(uint64_t nModifier, bool fGeneratedStakeModifier)
-    {
-        nStakeModifier = nModifier;
-        if (fGeneratedStakeModifier)
-            nFlags |= BLOCK_STAKE_MODIFIER;
-    }
-
     std::string ToString() const
     {
-        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nStakeModifier=%016x, hashProof=%s, prevoutStake=(%s), nStakeTime=%d merkle=%s, hashBlock=%s)",
+        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nStakeModifier=%s, hashProof=%s, prevoutStake=(%s), nStakeTime=%d merkle=%s, hashBlock=%s)",
             pprev, pnext, nFile, nBlockPos, nHeight,
             FormatMoney(nMint), FormatMoney(nMoneySupply),
             GeneratedStakeModifier() ? "MOD" : "-", GetStakeEntropyBit(), IsProofOfStake()? "PoS" : "PoW",
-            nStakeModifier,
+            bnStakeModifier.ToString(),
             hashProof.ToString(),
             prevoutStake.ToString(), nStakeTime,
             hashMerkleRoot.ToString(),
@@ -1111,8 +1089,7 @@ public:
         READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
-        READWRITE(nStakeModifier);
-        READWRITE(bnStakeModifierV2);
+        READWRITE(bnStakeModifier);
         if (IsProofOfStake())
         {
             READWRITE(prevoutStake);
