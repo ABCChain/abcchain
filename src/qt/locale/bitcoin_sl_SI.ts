@@ -397,7 +397,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+39"/>
         <source>Modify configuration options for ABCChain</source>
-        <translation>Spremeni nastavitve za Blackcoin</translation>
+        <translation>Spremeni nastavitve za ABCchain</translation>
     </message>
     <message>
         <location line="+17"/>

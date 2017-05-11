@@ -1202,7 +1202,7 @@ Adresse: %4</translation>
     <message>
         <location line="+7"/>
         <source>Use black visual theme (requires restart)</source>
-        <translation>Verwende das schwarze Blackcoin Wallet Design (Neustart erforderlich)</translation>
+        <translation>Verwende das schwarze ABCchain Wallet Design (Neustart erforderlich)</translation>
     </message>
     <message>
         <location line="+71"/>
@@ -1532,7 +1532,7 @@ Adresse: %4</translation>
     <message>
         <location line="+7"/>
         <source>Open the ABCChain debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Offne die Blackcoin Fehlerlogs aus dem Datenverzeichnis. Diese Funktion kann bei größeren Log-Files länger benötigen.</translation>
+        <translation>Offne die ABCchain Fehlerlogs aus dem Datenverzeichnis. Diese Funktion kann bei größeren Log-Files länger benötigen.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1542,7 +1542,7 @@ Adresse: %4</translation>
     <message>
         <location filename="../rpcconsole.cpp" line="-28"/>
         <source>Welcome to the ABCChain RPC console.</source>
-        <translation>Willkommen zur Blackcoin RPC Anwendung.</translation>
+        <translation>Willkommen zur ABCchain RPC Anwendung.</translation>
     </message>
     <message>
         <location line="+1"/>

@@ -1338,7 +1338,7 @@ Adres: %4
     <message>
         <location filename="../paymentserver.cpp" line="+107"/>
         <source>Cannot start abcoin: click-to-pay handler</source>
-        <translation>Blackcoin: tıkla-ve-öde işleyicisi başlatılamıyor</translation>
+        <translation>ABCchain: tıkla-ve-öde işleyicisi başlatılamıyor</translation>
     </message>
 </context>
 <context>

@@ -2879,6 +2879,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
 
+
+        if (pfrom->fInbound && addrMe.IsRoutable())
+        {
+            pfrom->addrLocal = addrMe;
+            SeenLocal(addrMe);
+        };
+
         // Disconnect if we connected to ourself
         if (nNonce == nLocalHostNonce && nNonce > 1)
         {
@@ -2887,10 +2894,11 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             return true;
         }
 
-        pfrom->addrLocal = addrMe;
-        if (pfrom->fInbound && addrMe.IsRoutable())
+        // record my external IP reported by peer
+        if (addrFrom.IsRoutable() && addrMe.IsRoutable())
         {
-            SeenLocal(addrMe);
+            addrSeenByPeer = addrMe;
+            AddLocal(addrSeenByPeer, LOCAL_BIND);
         }
 
         // Be shy and don't send version until we hear
@@ -2910,12 +2918,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             {
                 CAddress addr = GetLocalAddress(&pfrom->addr);
                 if (addr.IsRoutable())
-                {
                     pfrom->PushAddress(addr);
-                } else if (IsPeerAddrLocalGood(pfrom)) {
-                    addr.SetIP(pfrom->addrLocal);
-                    pfrom->PushAddress(addr);
-                }
             }
 
             // Get recent addresses
@@ -3582,12 +3585,6 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
             }
         }
 
-        // Start block sync
-        if (pto->fStartSync && !fImporting && !fReindex) {
-            pto->fStartSync = false;
-            PushGetBlocks(pto, pindexBest, uint256(0));
-        }
-
         // Resend wallet transactions that haven't gotten in a block yet
         // Except during reindex, importing and IBD, when old wallet
         // transactions become unconfirmed and spams other nodes.
@@ -3607,12 +3604,16 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
                 if (nLastRebroadcast)
                     pnode->setAddrKnown.clear();
 
-                // Rebroadcast our address
-                AdvertizeLocal(pnode);
+            // Rebroadcast our address
+            if (!fNoListen)
+            {
+                CAddress addr = GetLocalAddress(&pnode->addr);
+                if (addr.IsRoutable())
+                    pnode->PushAddress(addr);
             }
-            if (!vNodes.empty())
-                nLastRebroadcast = GetTime();
         }
+        nLastRebroadcast = GetTime();
+    }
 
         //
         // Message: addr

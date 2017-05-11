@@ -1091,7 +1091,7 @@ Dette betyr at det trengs en avgift på minimum %2.</translation>
     <message>
         <location line="+3"/>
         <source>&amp;Start ABCChain on system login</source>
-        <translation>&amp;Start Blackcoin ved innlogging</translation>
+        <translation>&amp;Start ABCchain ved innlogging</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -1601,7 +1601,7 @@ Dette betyr at det trengs en avgift på minimum %2.</translation>
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Send Blackcoins</translation>
+        <translation>Send ABCchains</translation>
     </message>
     <message>
         <location line="+76"/>

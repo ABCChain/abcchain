@@ -94,6 +94,7 @@ enum
 extern bool fDiscover;
 extern uint64_t nLocalServices;
 extern uint64_t nLocalHostNonce;
+extern CAddress addrSeenByPeer;
 extern CAddrMan addrman;
 
 extern std::vector<CNode*> vNodes;
@@ -627,6 +628,9 @@ public:
     void Subscribe(unsigned int nChannel, unsigned int nHops=0);
     void CancelSubscribe(unsigned int nChannel);
     void CloseSocketDisconnect();
+    void Cleanup();
+    void TryFlushSend();
+
 
     // Denial-of-service detection/prevention
     // The idea is to detect peers that are behaving

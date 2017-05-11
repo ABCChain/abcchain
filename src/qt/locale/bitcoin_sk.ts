@@ -1543,7 +1543,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+7"/>
         <source>Open the ABCChain debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otvorte Blackcoin súbor denníku ladenia z aktuálneho adresára dát. To môže trvať niekoľko sekúnd pre veľké súbory denníka.</translation>
+        <translation>Otvorte ABCchain súbor denníku ladenia z aktuálneho adresára dát. To môže trvať niekoľko sekúnd pre veľké súbory denníka.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1553,7 +1553,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location filename="../rpcconsole.cpp" line="-28"/>
         <source>Welcome to the ABCChain RPC console.</source>
-        <translation>Vitajte v konzole Blackcoin RPC.</translation>
+        <translation>Vitajte v konzole ABCchain RPC.</translation>
     </message>
     <message>
         <location line="+1"/>
